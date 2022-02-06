@@ -53,12 +53,13 @@ def detect_piece(image,i,j):
             area_max=area
     if area_max>=2000:
         try:
-            data=str(i)
-            if i>0:
-                data="+"+data
-            if j>0:
-                data=data+"+"
-            data=data+str(j)
+#             data=str(i)
+#             if i>0:
+#                 data="+"+data
+#             if j>0:
+#                 data=data+"+"
+#             data=data+str(j)
+            data=16*i+j
             send_data(data,10000)
         except:
             print("data not sent")
@@ -109,7 +110,7 @@ while(cap.isOpened()):
             for i in range(8):
                 for j in range(8):
                     chess[i][j]=chess_bord_2[100*i:100*(i+1),100*j:100*(j+1)]
-                    chess_int[i][j]=detect_piece(chess[i][j],i-4,j-4)
+                    chess_int[i][j]=detect_piece(chess[i][j],i,j)
                     if chess_int[i][j]==1:
                         cv2.imshow("chess_piece"+str(i)+str(j),chess[i][j])
             #print(chess_int)
